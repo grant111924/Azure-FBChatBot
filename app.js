@@ -17,7 +17,7 @@ bot.on('message', (payload, reply) => {
   bot.getProfile(payload.sender.id, (err, profile) => {
     if (err) throw err
 
-    reply({ text }, (err) => {
+    reply("hi", (err) => {
       if (err) throw err
 
       console.log(`Echoed back to ${profile.first_name} ${profile.last_name}: ${text}`)
