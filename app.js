@@ -1,29 +1,63 @@
-var http = require('http')
-var Bot = require('messenger-bot')
-var bodyParser = require('body-parser')
-var bot = new Bot({
-  token: 'EAAHnpYruwVQBAMdqY3MzN0hNUYefZAnVOOwT9mwOdmK6ZBJO0Ic1661FvY46YeJZCKaMIdYSoOHPzncIS9r4jWzuegeZBZAOPivUYRIfReNcNJpVLgclVFSFr7Ef6DNAqSX8vYPqI57lMT1MC7QauZBiFncLZCyZAwG09EosXjEOxgZDZD',
-  verify: 'grantbot',
-  app_secret: '2673dfa5a630efb487245039b42f1083'
+const express = require('express')
+const bodyParser = require('body-parser')
+const request = require('request')
+const app = express()
+
+app.set('port', (process.env.PORT || 5000))
+
+// Process application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: false}))
+
+// Process application/json
+app.use(bodyParser.json())
+
+// Index route
+app.get('/', function (req, res) {
+    res.send('Hello world, I am a chat bot')
 })
 
-bot.on('error', (err) => {
-  console.log(err.message)
+// for Facebook verification
+app.get('/webhook/', function (req, res) {
+    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
+        res.send(req.query['hub.challenge'])
+    }
+    res.send('Error, wrong token')
 })
 
-bot.on('message', (payload, reply) => {
-  var text = payload.message.text
+// Spin up the server
+app.listen(app.get('port'), function() {
+    console.log('running on port', app.get('port'))
+})
 
-  bot.getProfile(payload.sender.id, (err, profile) => {
-    if (err) throw err
+app.post('/webhook/', function (req, res) {
+    let messaging_events = req.body.entry[0].messaging
+    for (let i = 0; i < messaging_events.length; i++) {
+        let event = req.body.entry[0].messaging[i]
+        let sender = event.sender.id
+        if (event.message && event.message.text) {
+            let text = event.message.text
+            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+        }
+    }
+    res.sendStatus(200)
+})
 
-    reply("hi", (err) => {
-      if (err) throw err
-
-      console.log(`Echoed back to ${profile.first_name} ${profile.last_name}: ${text}`)
+const token = "EAAHnpYruwVQBAKwKm7qdEa5yY3AB7E7hqTumA3kZAhuqWHBpfd09MjqZBxv2ruBHldtk5CmNWikpttOzS5tQyLN3evKqkr895wLozpYMh1kziD0LOCzVqdu2KCuf9r15MOKQyZB858zmjzW6stwHwhaSYZBClELJtkDApllvJgZDZD";
+function sendTextMessage(sender, text) {
+    let messageData = { text:text }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
     })
-  })
-})
-
-http.createServer(bot.middleware()).listen(3000)
-console.log('Echo bot server running at port 3000.')
+}
