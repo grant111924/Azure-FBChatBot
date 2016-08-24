@@ -1,8 +1,8 @@
 var http = require('http')
 var Bot = require('messenger-bot')
-
+var bodyParser = require('body-parser')
 var bot = new Bot({
-  token: 'EAAHnpYruwVQBAI5wZCdL8wEGegQ50R3tkbcdafWck6r206pA8xVRyPjmKG7tIJZCGD7ifwZCoO8qITluWGQ5DJ7diAq5UZB7tCANommOIC6brp93b7ljTZCberBtY0Bq3KrCzrxQ5brZASY65KMGyQ97OeNmmqeiaELaY1gkK39AZDZD',
+  token: 'EAAHnpYruwVQBAMdqY3MzN0hNUYefZAnVOOwT9mwOdmK6ZBJO0Ic1661FvY46YeJZCKaMIdYSoOHPzncIS9r4jWzuegeZBZAOPivUYRIfReNcNJpVLgclVFSFr7Ef6DNAqSX8vYPqI57lMT1MC7QauZBiFncLZCyZAwG09EosXjEOxgZDZD',
   verify: 'grantbot',
   app_secret: '2673dfa5a630efb487245039b42f1083'
 })
