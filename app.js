@@ -45,7 +45,7 @@ app.listen(app.get('port'), function() {
 //     res.sendStatus(200)
 // })
 app.post('/webhook/', function (req, res) {
-     welcome();
+     welcome(event.sender.id);
      getstartbutton();
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
@@ -71,14 +71,14 @@ app.post('/webhook/', function (req, res) {
 
 
 const token = "EAAHnpYruwVQBAKwKm7qdEa5yY3AB7E7hqTumA3kZAhuqWHBpfd09MjqZBxv2ruBHldtk5CmNWikpttOzS5tQyLN3evKqkr895wLozpYMh1kziD0LOCzVqdu2KCuf9r15MOKQyZB858zmjzW6stwHwhaSYZBClELJtkDApllvJgZDZD";
-function welcome(){
+function welcome(sender){
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
                 "recipient":{
-                    "id":"USER_ID"
+                    "id":sender
                 },
                 "message":{
                     "text":"hello, world!"
@@ -117,16 +117,6 @@ function getstartbutton(){
         }
     })
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
