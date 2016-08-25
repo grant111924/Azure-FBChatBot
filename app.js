@@ -69,8 +69,7 @@ app.post('/webhook/', function (req, res) {
 
 
 const token = "EAAHnpYruwVQBAKwKm7qdEa5yY3AB7E7hqTumA3kZAhuqWHBpfd09MjqZBxv2ruBHldtk5CmNWikpttOzS5tQyLN3evKqkr895wLozpYMh1kziD0LOCzVqdu2KCuf9r15MOKQyZB858zmjzW6stwHwhaSYZBClELJtkDApllvJgZDZD";
-function sendTextMessage(sender, text) {
-    let messageData = { text:text }
+function getstartbutton(){
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
@@ -78,6 +77,27 @@ function sendTextMessage(sender, text) {
         json: {
             recipient: {id:sender},
             message: messageData,
+        }},function(error,response,body){
+
+        }
+    )
+}
+
+
+function sendTextMessage(sender, text) {
+    let messageData = { text:text }
+    request({
+        url: 'https://graph.facebook.com/v2.7/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            "setting_type":"call_to_actions",
+            "thread_state":"new_thread",
+            "call_to_actions":[
+                    {
+                    "payload":"USER_DEFINED_PAYLOAD"
+                    }
+            ]
         }
     }, function(error, response, body) {
         if (error) {
@@ -121,7 +141,7 @@ function sendGenericMessage(sender) {
         }
     }
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
