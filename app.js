@@ -73,7 +73,7 @@ app.post('/webhook/', function (req, res) {
 const token = "EAAHnpYruwVQBAKwKm7qdEa5yY3AB7E7hqTumA3kZAhuqWHBpfd09MjqZBxv2ruBHldtk5CmNWikpttOzS5tQyLN3evKqkr895wLozpYMh1kziD0LOCzVqdu2KCuf9r15MOKQyZB858zmjzW6stwHwhaSYZBClELJtkDApllvJgZDZD";
 function welcome(sender){
     request({
-        url: 'https://graph.facebook.com/v2.6/'+token+'/thread_settings',
+        url: 'https://graph.facebook.com/v2.7/EAAHnpYruwVQBAKwKm7qdEa5yY3AB7E7hqTumA3kZAhuqWHBpfd09MjqZBxv2ruBHldtk5CmNWikpttOzS5tQyLN3evKqkr895wLozpYMh1kziD0LOCzVqdu2KCuf9r15MOKQyZB858zmjzW6stwHwhaSYZBClELJtkDApllvJgZDZD/thread_settings',
         qs: {access_token:token},
         method: 'POST',
         json: {
