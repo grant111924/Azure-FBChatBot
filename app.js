@@ -94,11 +94,13 @@ function sendTextMessage(sender, text) {
         json: {
             "setting_type":"call_to_actions",
             "thread_state":"new_thread",
-            "call_to_actions":[
+           "call_to_actions":[
                     {
-                    "payload":"USER_DEFINED_PAYLOAD"
+                    "message":{
+                        "text":"Hi, 歡迎來到 Serverless Maniac。我是機器人，輸入 help 來看有什麼指令可以用吧"
                     }
-            ]
+                    }
+                ]
         }
     }, function(error, response, body) {
         if (error) {
