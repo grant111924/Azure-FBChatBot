@@ -45,7 +45,6 @@ app.listen(app.get('port'), function() {
 //     res.sendStatus(200)
 // })
 app.post('/webhook/', function (req, res) {
-    getstartbutton();
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
@@ -71,18 +70,42 @@ app.post('/webhook/', function (req, res) {
 
 const token = "EAAHnpYruwVQBAKwKm7qdEa5yY3AB7E7hqTumA3kZAhuqWHBpfd09MjqZBxv2ruBHldtk5CmNWikpttOzS5tQyLN3evKqkr895wLozpYMh1kziD0LOCzVqdu2KCuf9r15MOKQyZB858zmjzW6stwHwhaSYZBClELJtkDApllvJgZDZD";
 function getstartbutton(){
-    request({
+     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender},
-            message: messageData,
-        }},function(error,response,body){
-
+             "setting_type":"call_to_actions",
+            "thread_state":"new_thread",
+            "call_to_actions":[
+                {
+                "payload":"USER_DEFINED_PAYLOAD"
+                }
+            ]
         }
-    )
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function sendTextMessage(sender, text) {
@@ -92,15 +115,8 @@ function sendTextMessage(sender, text) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            "setting_type":"call_to_actions",
-            "thread_state":"new_thread",
-           "call_to_actions":[
-                    {
-                    "message":{
-                        "text":"Hi, 歡迎來到 Serverless Maniac。我是機器人，輸入 help 來看有什麼指令可以用吧"
-                    }
-                    }
-                ]
+            recipient: {id:sender},
+            message: messageData,
         }
     }, function(error, response, body) {
         if (error) {
