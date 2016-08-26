@@ -157,13 +157,9 @@ function sendTextMessage(sender, text) {
             trainGoResult.push(temp);
         }
     }
-    var test;
-    for(let i;i<trainGoResult.length;i++){
-          test+=trainGoResult[i]+" ";
-    }
-    // var x=stationParse[startDataIndex].時刻表.length
-    // var y=stationParse[endDataIndex].時刻表.length
-    // var resultTime=start+"=>"+end;
+    var x=stationParse[startDataIndex].時刻表.length
+    var y=stationParse[endDataIndex].時刻表.length
+    var resultTime=start+"=>"+end;
     // while(x==-1||y==-1){
     //     let i=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[x].車次);
     //     let j=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[y].車次);
@@ -200,7 +196,7 @@ function sendTextMessage(sender, text) {
     //      ans="error"
     //  }
             
-    let messageData = { text: test }
+    let messageData = { text: startDataIndex+"  "+endDataIndex }
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
