@@ -170,7 +170,7 @@ function sendTextMessage(sender, text) {
         y--;
     }
 
-
+  
     
     // stationParse[startDataIndex].時刻表[j].車次
     //     stationParse[endDataIndex].時刻表[j].車次
