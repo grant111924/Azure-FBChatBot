@@ -196,7 +196,7 @@ function sendTextMessage(sender, text) {
     //      ans="error"
     //  }
             
-    let messageData = { text: startDataIndex+"  "+endDataIndex }
+    let messageData = { text: startDataIndex+"  "+endDataIndex+" "+x+" "+y+" "+resultTime }
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
