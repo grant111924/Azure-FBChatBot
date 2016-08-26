@@ -143,10 +143,10 @@ function sendTextMessage(sender, text) {
     var trainGoResult=new Array();
     
      for(let i=0;i<stationParse.length;i++){
-            if(start==stationParse[i]){
+            if(start==stationParse[i].站名){
                 startDataIndex=i;
             }
-            if(end==stationParse[i]){
+            if(end==stationParse[i].站名){
                 endDataIndex=i;
             }
     }
