@@ -129,7 +129,12 @@ function getstartbutton(){
 
 
 function sendTextMessage(sender, text) {
-    let messageData = { text:text }
+    var json='[ { "車輛編號": "502", "時刻表": [ {  "地點": "台中","時間": "06:25"}, { "地點": "苗栗", "時間": "06:44"  } ]  ]';
+   
+   
+   
+   
+    let messageData = { text:json }
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
