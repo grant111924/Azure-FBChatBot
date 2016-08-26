@@ -45,8 +45,8 @@ app.listen(app.get('port'), function() {
 //     res.sendStatus(200)
 // })
 app.post('/webhook/', function (req, res) {
-    //  welcome();
-    //  getstartbutton();
+     welcome();
+     getstartbutton();
   
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
@@ -79,15 +79,12 @@ function welcome(){
         qs: {access_token:token},
         method: 'POST',
         json: {
-                "setting_type":"call_to_actions",
-                "thread_state":"new_thread",
-                "call_to_actions":[
+                "setting_type":"greeting",
+                "greeting":
                     {
-                    "message":{
                         "text":"Hi, 歡迎來到 Serverless Maniac。我是機器人，輸入 help 來看有什麼指令可以用吧"
                     }
-                    }
-                ]
+                
         }
     }, function(error, response, body) {
         if (error) {
