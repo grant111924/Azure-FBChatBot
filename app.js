@@ -193,7 +193,7 @@ function sendTextMessage(sender, text) {
     //      ans="error"
     //  }
             
-    let messageData = { text:resultTime }
+    let messageData = { text:start+end }
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
