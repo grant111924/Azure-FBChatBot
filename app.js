@@ -144,12 +144,12 @@ function sendTextMessage(sender, text) {
      })
      if(ans!=""){
          ans="success"
-        //   for (let i=0;i<data['時刻表'].length;i++){
-        //         if(text==data['時刻表'][i].地點){
-        //             ans=data['時刻表'][i].時間;
-        //             break
-        //         }
-        //     }
+          for (let i=0;i<data[0].時刻表.length;i++){
+                if(text==data[0].時刻表[i].地點){
+                    ans=data[0].時刻表[i].時間;
+                    break
+                }
+            }
      }else{
          ans="error"
      }
