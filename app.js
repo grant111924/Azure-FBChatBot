@@ -137,38 +137,41 @@ function sendTextMessage(sender, text) {
     var end=inputText[1];
     var startDataIndex,endDataIndex;
 
-    var d=new Date();
-    var stationParse=JSON.parse(station);
-    var trainGoParse=JSON.parse(trainGo);
-    var trainGoResult=new Array();
+    // var d=new Date();
+    // var stationParse=JSON.parse(station);
+    // var trainGoParse=JSON.parse(trainGo);
+    // var trainGoResult=new Array();
     
-     for(let i=0;i<stationParse.length;i++){
-            if(start==stationParse[i]){
-                startDataIndex=i;
-            }
-            if(end==stationParse[i]){
-                endDataIndex=i;
-            }
-    }
+    //  for(let i=0;i<stationParse.length;i++){
+    //         if(start==stationParse[i]){
+    //             startDataIndex=i;
+    //         }
+    //         if(end==stationParse[i]){
+    //             endDataIndex=i;
+    //         }
+    // }
 
-    for(let i=0;i<trainGoParse.length;i++){
-        let temp=trainGoParse[i].行駛日;
-        if(temp.indexOf(d.getDay)>=0){
-            trainGoResult.push(temp);
-        }
-    }
-    var x=stationParse[startDataIndex].時刻表.length
-    var y=stationParse[endDataIndex].時刻表.length
-    var resultTime=start+"=>"+end;
-    while(x==-1||y==-1){
-        let i=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[x].車次);
-        let j=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[y].車次);
-        if(i>=0 && j>=0 ){
-            resultTime+="\n"+stationParse[startDataIndex].時刻表[x].車次+"  "+stationParse[startDataIndex].時刻表[x].時間+"=>"+stationParse[endDataIndex].時刻表[y].時間
-        }
-        x--;
-        y--;
-    }
+    // for(let i=0;i<trainGoParse.length;i++){
+    //     let temp=trainGoParse[i].行駛日;
+    //     if(temp.indexOf(d.getDay)>=0){
+    //         trainGoResult.push(temp);
+    //     }
+    // }
+    // var x=stationParse[startDataIndex].時刻表.length
+    // var y=stationParse[endDataIndex].時刻表.length
+    // var resultTime=start+"=>"+end;
+    // while(x==-1||y==-1){
+    //     let i=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[x].車次);
+    //     let j=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[y].車次);
+    //     if(i>=0 && j>=0 ){
+    //         resultTime+="\n"+stationParse[startDataIndex].時刻表[x].車次+"  "+stationParse[startDataIndex].時刻表[x].時間+"=>"+stationParse[endDataIndex].時刻表[y].時間
+    //     }
+    //     x--;
+    //     y--;
+    // }
+
+
+
     // stationParse[startDataIndex].時刻表[j].車次
     //     stationParse[endDataIndex].時刻表[j].車次
   
