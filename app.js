@@ -135,7 +135,7 @@ function sendTextMessage(sender, text) {
     var inputText=text.split(",");
     var start=inputText[0];
     var end=inputText[1];
-    var startDataIndex,endDataIndex;
+    var startDataIndex,endDataIndex,x,y;
 
     var d=new Date();
     var stationParse=JSON.parse(station);
@@ -157,8 +157,8 @@ function sendTextMessage(sender, text) {
             trainGoResult.push(temp);
         }
     }
-    var x=stationParse[startDataIndex].時刻表.length
-    var y=stationParse[endDataIndex].時刻表.length
+     x =stationParse[startDataIndex].時刻表.length
+     y=stationParse[endDataIndex].時刻表.length
     var resultTime=start+"=>"+end;
     // while(x==-1||y==-1){
     //     let i=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[x].車次);
