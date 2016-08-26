@@ -135,17 +135,14 @@ function sendTextMessage(sender, text) {
     var location=new Array('台中','苗栗','新竹','桃園','板橋','台北','南港');
     var data=JSON.parse(json);
     var ans;
-
+    console.log(data['時刻表'][0]['地點']);
             for (let i=0;i<data['時刻表'].length;i++){
                 if(text==data['時刻表'][i]['地點']){
                     ans=text;
+                    console.log(ans)
                     break
                 }
             }
-            
-    
-   
-   
    
     let messageData = { text:ans }
     request({
