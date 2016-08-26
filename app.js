@@ -45,12 +45,12 @@ app.listen(app.get('port'), function() {
 //     res.sendStatus(200)
 // })
 app.post('/webhook/', function (req, res) {
-     welcome();
+    //  welcome();
      getstartbutton();
+  
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
-      console.log(event);
       let sender = event.sender.id
       if (event.message && event.message.text) {
         let text = event.message.text
@@ -58,7 +58,8 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
-        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+       
+        sendTextMessage(sender, text.substring(0, 200))
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
@@ -68,6 +69,7 @@ app.post('/webhook/', function (req, res) {
     }
     res.sendStatus(200)
   })
+
 
 
 const token = "EAAHnpYruwVQBAKwKm7qdEa5yY3AB7E7hqTumA3kZAhuqWHBpfd09MjqZBxv2ruBHldtk5CmNWikpttOzS5tQyLN3evKqkr895wLozpYMh1kziD0LOCzVqdu2KCuf9r15MOKQyZB858zmjzW6stwHwhaSYZBClELJtkDApllvJgZDZD";
@@ -129,12 +131,23 @@ function getstartbutton(){
 
 
 function sendTextMessage(sender, text) {
-    var json='[ { "車輛編號": "502", "時刻表": [ {  "地點": "台中","時間": "06:25"}, { "地點": "苗栗", "時間": "06:44"  } ]  ]';
+    var json='[ { "車次": "502", "時刻表": [ {  "地點": "台中","時間": "06:25"}, { "地點": "苗栗", "時間": "06:44"  } ] }]';
+    var location=new Array('台中','苗栗','新竹','桃園','板橋','台北','南港');
+    var data=JSON.parse(json);
+    var ans;
+
+            for (let i=0;i<data['時刻表'].length;i++){
+                if(text==data['時刻表'][i]['地點']){
+                    ans=text;
+                    break
+                }
+            }
+            
+    
    
    
    
-   
-    let messageData = { text:json }
+    let messageData = { text:ans }
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
