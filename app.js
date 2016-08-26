@@ -160,15 +160,15 @@ function sendTextMessage(sender, text) {
      x =stationParse[startDataIndex].時刻表.length
      y=stationParse[endDataIndex].時刻表.length
     var resultTime=start+"=>"+end;
-    // while(x==-1||y==-1){
-    //     let i=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[x].車次);
-    //     let j=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[y].車次);
-    //     if(i>=0 && j>=0 ){
-    //         resultTime+="\n"+stationParse[startDataIndex].時刻表[x].車次+"  "+stationParse[startDataIndex].時刻表[x].時間+"=>"+stationParse[endDataIndex].時刻表[y].時間
-    //     }
-    //     x--;
-    //     y--;
-    // }
+    while(x==-1||y==-1){
+        let i=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[x].車次);
+        let j=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[y].車次);
+        if(i>=0 && j>=0 ){
+            resultTime+="\n"+stationParse[startDataIndex].時刻表[x].車次+"  "+stationParse[startDataIndex].時刻表[x].時間+"=>"+stationParse[endDataIndex].時刻表[y].時間
+        }
+        x--;
+        y--;
+    }
 
   
     
@@ -196,7 +196,7 @@ function sendTextMessage(sender, text) {
     //      ans="error"
     //  }
             
-    let messageData = { text: resultTime }
+    let messageData = { text: startDataIndex+"  "+endDataIndex+" "+x+" "+y }
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
