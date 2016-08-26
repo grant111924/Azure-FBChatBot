@@ -137,19 +137,19 @@ function sendTextMessage(sender, text) {
     var end=inputText[1];
     var startDataIndex,endDataIndex;
 
-    // var d=new Date();
-    // var stationParse=JSON.parse(station);
-    // var trainGoParse=JSON.parse(trainGo);
-    // var trainGoResult=new Array();
+    var d=new Date();
+    var stationParse=JSON.parse(station);
+    var trainGoParse=JSON.parse(trainGo);
+    var trainGoResult=new Array();
     
-    //  for(let i=0;i<stationParse.length;i++){
-    //         if(start==stationParse[i]){
-    //             startDataIndex=i;
-    //         }
-    //         if(end==stationParse[i]){
-    //             endDataIndex=i;
-    //         }
-    // }
+     for(let i=0;i<stationParse.length;i++){
+            if(start==stationParse[i]){
+                startDataIndex=i;
+            }
+            if(end==stationParse[i]){
+                endDataIndex=i;
+            }
+    }
 
     // for(let i=0;i<trainGoParse.length;i++){
     //     let temp=trainGoParse[i].行駛日;
@@ -171,7 +171,7 @@ function sendTextMessage(sender, text) {
     // }
 
 
-
+    
     // stationParse[startDataIndex].時刻表[j].車次
     //     stationParse[endDataIndex].時刻表[j].車次
   
@@ -196,7 +196,7 @@ function sendTextMessage(sender, text) {
     //      ans="error"
     //  }
             
-    let messageData = { text:start+end }
+    let messageData = { text:startDataIndex+"  "+endDataIndex }
     request({
         url: 'https://graph.facebook.com/v2.7/me/messages',
         qs: {access_token:token},
