@@ -155,8 +155,8 @@ function sendTextMessage(sender, text) {
             trainGoResult.push(temp);
         }
     }
-     x =stationParse[startDataIndex].時刻表.length
-     y=stationParse[endDataIndex].時刻表.length
+     x =stationParse[0].時刻表.length
+     y=stationParse[1].時刻表.length
     var resultTime=start+"=>"+end;
     // while(x>=-1||y>=-1){
     //     let i=trainGoResult.indexOf(stationParse[startDataIndex].時刻表[x].車次);
