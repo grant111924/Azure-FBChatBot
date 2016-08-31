@@ -83,7 +83,7 @@ function welcome(){
                 "setting_type":"greeting",
                 "greeting":
                     {
-                        "text":"Hi, 歡迎來到 Serverless Maniac。我是機器人，輸入 help 來看有什麼指令可以用吧"
+                        "text":"Hi, 歡迎來到 高鐵小幫手。我是GrantBot,請輸入高鐵站名 格式如下 起程站,到達站"
                     }
                 
         }
